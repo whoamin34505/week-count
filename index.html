@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Определение недели</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Определение текущей недели</h1>
+        <p id="weekInfo">Загрузка...</p>
+    </div>
+
+    <script>
+        function getCurrentWeekInfo() {
+            const startDate = new Date('2024-09-02');
+            const currentDate = new Date();
+            const oneWeek = 7 * 24 * 60 * 60 * 1000; 
+
+            const weeksPassed = Math.floor((currentDate - startDate) / oneWeek) + 1;
+
+            const isEvenWeek = weeksPassed % 2 === 0;
+
+            const weekInfoText = `Сейчас идет ${isEvenWeek ? 'четная' : 'нечетная'} неделя, порядковый номер недели: ${weeksPassed}`;
+
+            document.getElementById('weekInfo').textContent = weekInfoText;
+        }
+
+        window.onload = getCurrentWeekInfo;
+    </script>
+</body>
+</html>
